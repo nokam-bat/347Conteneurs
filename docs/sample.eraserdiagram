@@ -1,0 +1,45 @@
+direction right
+
+Client apps [icon: azure-browser]
+Azure Load Balancer [icon: azure-load-balancers]
+HELM [icon: helm]
+CICD [label: "CI/CD"] {
+  Azure Pipelines [icon: rocketmq]
+}
+Azure Container Registry [icon: azure-container-registries]
+DevOps [icon: azure-users, label: "Dev/Ops"]
+Azure Active Directory [icon: azure-active-directory]
+Azure Monitor [icon: azure-monitor]
+Azure Key Vault [icon: azure-key-vaults]
+SQL Database [icon: azure-sql-database]
+Azure Cosmos DB [icon: azure-cosmos-db]
+Azure Kubernetes Service (AKS) [icon: azure-kubernetes-services]
+Virtual network [icon: azure-virtual-networks] {
+  Kubernetes cluster [icon: kubernetes]
+  Front end {
+    Ingress [icon: nginx]
+  }
+  Back-end services {
+    Pod1 [icon: box, label: "Pod"]
+    Pod2 [icon: box, label: "Pod"]
+    Pod3 [icon: box, label: "Pod"]
+    Pod4 [icon: box, label: "Pod"]
+  }
+  Utility services {
+    Elastic search [icon: box]
+    Prometheus [icon: box]
+  }
+}
+
+
+Client apps > Azure Load Balancer > Virtual network
+HELM > Virtual network:Helm upgrade
+CICD --> Azure Container Registry:Docker push
+Virtual network --> Azure Container Registry:Docker pull
+DevOps > Azure Active Directory
+Kubernetes cluster > Azure Active Directory:Role-based access control
+Ingress > Pod1
+Pod1 > Pod2 > SQL Database
+Pod1 > Pod3
+Pod3 --> Pod4:Pod autoscaling
+Pod4 > Azure Cosmos DB

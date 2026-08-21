@@ -266,3 +266,26 @@ Voici le résultat attendu:
 
 ![](images/ls-la.png "résultat")
 
+## **Dessiner son architecture   -   Eraser – Architecture designer**
+## **1.Eraser - Architecture designer**
+### Context
+All-in-one markdown editor, collaborative canvas and diagram-as-code builder
+
+### Ce quon va faire
+* [Télécharger l'extension pour visual studio code]([https://marketplace.visualstudio.com/items?itemName=EraserLabs.eraserlabs](https://marketplace.visualstudio.com/items?itemName=EraserLabs.eraserlabs))
+*La procédure d'installation d'une extension dans Visual Studio Code est identique:
+### Marche à suivre
+* Dans la page d’accueil (interface) de Visual Studio Code, sélectionner l’icône des extensions 
+* Dans le champ de recherche en haut à droite sous EXTENSIONS : MARKETPLACE, 
+saisissez le mot clé correspondant à l’extension " _Eraser_" et cliquer sur **Installer**.
+
+## **2.Prise en main de l'outil**
+### On va faire un exercice
+* Récupérer le fichier suivant: "[1KB sample.eraserdiagram](docs/sample.eraserdiagram)"
+* Faire en sorte de générer, grâce à l'extension Visual Studio Code, le résultat ici-bas.
+
+![](images/eraserDiagram.avif "Diagram")
+source: [eraser.io](docs/sample.eraserdiagram) 
+
+* En regardant la documentation intégrée avec l'extension, 
+on doit identifier et ajouter le bon type de diagram comme première ligne pour que ça fonctionne.
