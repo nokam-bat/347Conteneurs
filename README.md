@@ -194,7 +194,75 @@ drwxr-xr-x 1 noork 197609 0 août  21 22:42 .git/
 ## **Visual Studio Code "VSC"  -  Visual Studio Code – Éditeur de code**
 ## **1.Visual Studio Code - Éditeur de code "VSC"**
 ### Contexte
+Visual Studio Code est un éditeur de code source léger mais puissant qui s'exécute sur le bureau.
+Il est disponible pour Windows, MacOS et Linux. Livré avec une prise en charge intégrée
+de _Javscript_, _Typescript_ et _Node.JS_, il dispose d'un riche écosystème d'extensions pour
+d'autres langages et environnements d'exécution (ex: _C++, C#, Python, PHP, Go, .NET_)
 
 ### Ce qu'on va faire
+* [Télécharger](https://code.visualstudio.com/download?_exp_download=fb315fc982)
+* Installer la version pour Windows (Lancer l'installeur avec exécutable)
+* Ajouter l'extension pour [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+* Ajouter l'exension pour [Markdown](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+* Ajouter l'extension pour [Markdown to PDF](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf)
+### Marche à suivre
+1. Télécharger/Installer VSCode
+* Lancer l'exécutable téléchargé, accepter le contrat de License, Cliquer sur **Suivant**
+jusqu'à la fenêtre **Prêt à installer** puis cliquer **Installer**
+* Attendre la fin de l'installation et cliquer sur Terminer. VSCode devrait se lancer automatiquement.
+Si c'est pas le cas, le faire manellement.
+2. Extesion Docker
+* Ajouter l'extension pour [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+* Dans la page d'accueil de l'application VSC, sélectionner l'icône des extensions.
+Rechercher **Docker** et cliquer sur **installer**
 
+![](images/Extension.png "Cliquer sur Extensions")
+
+3. Ajouter Extension Markdown
+* Faire pareil qu'avec Docker. **Cliquer sur Trut publisher and install**.
+* 4. Ajouter l'extension pour l'impression [Markdown pdf](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf)
+
+## **2.Option - configurer cmder comme terminal par défaut dans VSC**
+### Marche à suivre
+* Ouvrir Visual Studo Code
+* Appuyer sur "CTRL + SHIFT + p"
+* Puis écrire "**open user settings**" et choisir le "**user settings **"
+  (c'est normal que > soit mis automatiquement avant notre text)
+
+![](images/usersettingsjson.png "user settings json")
+
+et **ajouter ce contenu** en respectant la structure du json existant:
+Aussi mettre à jour le **chemin** pointant vers mon installation __<PathToYourCmderInstallation>__
+```
+{
+    "terminal.integrated.profiles.windows": {
+        "Cmder": {
+            "path": "${env:windir}\\System32\\cmd.exe",
+            "args": ["/k", "<PathToYourCmderInstallation>\\cmder\\vendor\\init.bat"] 
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Cmder"
+}
+```
+Voici ci-dessous mon fichier json à la première ouverture:
+
+![](images/jsonAvant.png "Voici mon fichier json quand je l'ai ouvert pour la première fois")
+              
+Voici ci-dessous mon fichier json après avoir inséré le text écrit:
+
+
+![](images/MiseEnPage.png "La mise en page correcte sans le path correct")
+
+Voici ci-dessous mon fichier json avec le bon chemin écrit:
+ 
+![](images/jsonCorrect.png "Json Correct")
+
+Sauvegarder et quitter.
+
+
+* Tester l'installation en ouvrant un terminal VSCode 
+(**Terminal**, **Nouveau terminal**) et tapant le code `ls -la`
+Voici le résultat attendu:
+
+![](images/ls-la.png "résultat")
 
