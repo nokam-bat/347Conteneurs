@@ -1,30 +1,28 @@
 # 347Conteneurs
-## Documentation d'installation de l'environnement de developpement.
+# Documentation d'installation de l'environnement de developpement.
 ## **Objectifs et consignes:** Cmder, Git, VSC, Docker Desktop.
 --------------------------------------------------------------------------
-## **Objectifs**
+**Objectifs**
 À l'aide des sources proposées ci-dessous, installer différents outils proposés:
 * Cmdr,
 * Git,
 * Visual Studio Code,
 * Docker Desktop.
 
-## **Livrable**
+**Livrable**
 La documentation d'installation favorise:
 * Une documentation basée sur des lignes de commandes en mentionnant les INUTS et les OUTPUT attendus.
 * Des captures d'écran lorsque les lignes de commmandes ne sont pas possible
 * Une documentation de résolution d'éventuelles panne.
 
 **Source du document initial:** `[Source](https://ivanskodje.com/how-to-set-system-path-environment-variable-in-windows-10/)`
-
-### **Utilitaire de ligne de commande *Cmder* **
                                              
 **Cmder – Utilitaire de ligne de commande.**
 ### Context  
 Cmder est un logiciel créé à cause de la pure frustration face à l’absence de jolis  émulateurs de consoles sur Windows. 
 C’est donc un  émulateur de terminal pour Windows.
 ### Ce qu'on va faire
-** `[Télécharger](https://cmder.app/)`**
+* **`[Télécharger](https://cmder.app/)`**
 * Choisir la version mini (nous installerons *git* dans un second temps)
 * Bien mettre à jour la variable d'environnement "*PATH*"
 * En t'aidant de **`[cette documentation](https://github.com/cmderdev/cmder#shortcut-to-open-cmder-in-a-chosen-folder)`**, 
@@ -103,3 +101,13 @@ un répertoire pour voir "Cmder Here" dans le menu.
 Normalement ça va ouvrir le prompt cmder.
 2. Valider que les raccourcis cmder ont bien été intégré dans l'explorateur de Windows
 ![](images/raccourciClic.png "Raccourci Cmder")
+        
+## **Gestion de versioning**
+**1. Git - outil de gestion de version**
+### Context
+Git est un système de contrôle de version distribué gratuit et open source conçu 
+pour gérer tout, des petits aux très grands projets, avec rapidité et eff
+icacité.
+* **[Télécharger](https://git-scm.com/)** 
+* Prendre la version *"Standalone Installer"* 
+* Laisser tous les paramètres par défaut (durant l’installation) 
