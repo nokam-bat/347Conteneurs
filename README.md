@@ -48,7 +48,7 @@ On peut le faire avec n'importe quel fichier exécutable.
 ### Marche à suivre
 1. Télécharger le *Cmder.exe* en version mini et le décompresser. 
 Voici une image d'à quoi ressemble le dossier décompressé.
-![](contenuDossierCmderMini.png "Dossier décompressé")
+![](images/contenuDossierCmderMini.png "Contenu Décompressé")
 2. Ouvrir l'invite de commande en tant qu'administrateur 
 (en faisant un clique-droit sur le terminal dans l'explorateur windows).
 Avec  le terminal, se positionner dans le dossier cmder avec le chemin d'accès via la commande
