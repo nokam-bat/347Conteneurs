@@ -183,7 +183,18 @@ Maintenant on est `C:\Users\noork\Projet347Conteneurs (master)`
 --INPUT
 `ls -la` (ls pour liste les fichiers et -la pour afficher tous les fichiers, y compris les cachés) 
 --OUTPUT
-```total 12
+```
+total 12
 drwxr-xr-x 1 noork 197609 0 août  21 22:42 ./
 drwxr-xr-x 1 noork 197609 0 août  21 22:37 ../
-drwxr-xr-x 1 noork 197609 0 août  21 22:42 .git/```
+drwxr-xr-x 1 noork 197609 0 août  21 22:42 .git/
+```
+
+
+## **Visual Studio Code "VSC"  -  Visual Studio Code – Éditeur de code**
+## **1.Visual Studio Code - Éditeur de code "VSC"**
+### Contexte
+
+### Ce qu'on va faire
+
+
