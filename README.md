@@ -280,12 +280,102 @@ All-in-one markdown editor, collaborative canvas and diagram-as-code builder
 saisissez le mot clé correspondant à l’extension " _Eraser_" et cliquer sur **Installer**.
 
 ## **2.Prise en main de l'outil**
+
+**Petite parenthèse quant à comment lier le nom "1KB sample.eraserdiagram"
+à un fichier qui se télécharge au clique.**
+* **Ajouter** à la racine de mon projet **le fichier "sample.eraserdiagram"** qu'on a préalablement téléchargé.
+* En bas de l'IDE ou via le menu en haut, checher l'onglet **Git** pour **ouvrir** le panneau de contrôle de version.
+* Dans l'onglet **Git**, aller dans la section **Uncommitted changes** ou **Changes**.
+* On devrait y voir notre fichier **sample.eraserdiagram**.
+* il faut le **commit** et le **push** sur **Github**.
+* Aller sur mon dépôt sur **Github**.
+* Aller **sur** le fichier **sample.eraserdiagram** dans le dossier **docs**.
+* Sélectionner **Raw**.
+ça va ouvrir une page avec seulement le **contenu brut** du fichier.
+* **Copier l'URL** du haut de la page:
+
+![](images/URLRaw.png "l'URL à copier")
+
+* Enfin, **coller l'URL** dans l'**insertion de lien**:
+
+![](images/insererURL.png "Insérer le lien")
+
+C'est fait!
+
 ### On va faire un exercice
-* Récupérer le fichier suivant: "[1KB sample.eraserdiagram](docs/sample.eraserdiagram)"
+* Récupérer le fichier suivant: "[1KB sample.eraserdiagram](https://raw.githubusercontent.com/nokam-bat/347Conteneurs/refs/heads/main/docs/sample.eraserdiagram)"
 * Faire en sorte de générer, grâce à l'extension Visual Studio Code, le résultat ici-bas.
 
-![](images/eraserDiagram.avif "Diagram")
+![](images/sampleEraserDiagram.avif "Diagram")
 source: [eraser.io](docs/sample.eraserdiagram) 
 
-* En regardant la documentation intégrée avec l'extension, 
+* En regardant la [documentation intégrée avec l'extension](https://docs.eraser.io/diagram-as-code), 
 on doit identifier et ajouter le bon type de diagram comme première ligne pour que ça fonctionne.
+
+**Diagram syntax**
+La première ligne du fichier determine le type de diagram parmis lesquels sont:
+``` 
+cloud-architecture-diagram
+entity-relationship-diagram
+sequence-diagram
+flow-chart
+``` 
+**Voici la syntax pour chacun des diagram**
+On peut les trouver sur la **page d'extension** d'Eraser **surVSCode**:
+
+* [Cloud architecture diagram](https://docs.eraser.io/architecture-diagram-syntax)
+* [Entity relationship diagram](https://docs.eraser.io/erd-syntax))
+* [Sequence diagram](https://docs.eraser.io/sequence-diagram-syntax)
+* [Flow chart](https://docs.eraser.io/flow-chart-syntax)
+
+
+### Marche à suivre:
+* Télécharger le fichier mentionné.
+* Ouvrir VSCode et s'assurer de fermer tous les onglets afin d'avoir l'espace vide.
+L'app devrait ressembler à ça:
+
+![](images/VSCodeVide.png "VsCode vide")
+
+* Cliquer sur **fchier** puis **open file** 
+et sélectionner le fichier qu'on vient de télécharger.
+* Cliquer sur **faire confiance** au fichier et d'**afficher** (si ça le demande)
+* L'app devrait ressembler à ça:
+
+![](images/VSCodeProbleme.png "L'affichage n'apparaît pas")
+
+* Pour que le document s'affiche correctement, 
+il faut **cliquer** sur les **trois points** en haut à droite de l'écran
+puis sur **Reopen editor with** et enfin sur **text editor**.
+* Voici à quoi devrait ressembler le document:
+
+![](images/modeEditeur.png "Mode éditeur")![](images/modeEditeur.png)
+
+**Maintenant, pour que _l'extension Eraser_ reconnaise qu'il s'agit d'un _diagramme d'architecture_
+et qu'elle _affiche le dessin_ visuel à côté, il faut _déclarer_ le _type de diagramme_
+tout en haut ou juste après la direction.**
+* Pour ça, il faut d'abord identifier à quel type de diagram on a à faire.
+* Pour ça on observe le **diagram du Professeur**:
+
+![](images/diagramProf.png "Diagram Original du prof")
+
+*Puis on **compare** l'**affichage** avec les affichages de tous les **types d'architetures**.
+* Pour cela, il faut **cliquer** un à un sur **chacun des liens** explicatifs de chaque **diagram**.
+soit en retournant les chercher sur la page d'extension d'Erser sur VSCode,
+**soit en cliquant sur les liens que j'ai partagé plus haut dans la doc d'intro à Eraser.**
+*Comme on peut voir dans la fiche de **syntax** de la page "**Architecture diagram syntax**",
+ça a l'air de correspondre avec notre **code**.
+* On test l'hypothèse en **tapant** en haut du fichier `cloud-architecture-diagram`, avant ou après `direction right`.
+* On **enrengistre** avec "Ctrl + S"
+* On clique sur le **"livre"** en haut à droite de l'écran de **VSCode**
+ça va rajouter une deuxième partition du même code à côté de celui sur lequel on est.
+C'est pratique pour avoir **le code et le diagram affichés** en même temps.
+* Ensuite on **clique** sur les **trois points** à droite du **"livre"**
+* On **clique** sur **"reopen editor"** puis sur **"Eraser Diagram"**
+Voici juste en dessous d'une image pour mieux illustrer:
+
+![](images/SequenceDiagram.png "exemple imagée avec le mauvais code de diagram")
+*Ne pas faire attention à la mauvaise ligne de code que j'ai mis qui a mal affiché le diagram*
+
+Maintenant, ça devrait s'afficher comme ici-bas!
+
+![](images/architectureDiagram.png "Bon diagramme")
