@@ -379,3 +379,312 @@ Voici juste en dessous d'une image pour mieux illustrer:
 Maintenant, ça devrait s'afficher comme ici-bas!
 
 ![](images/architectureDiagram.png "Bon diagramme")
+
+
+## **Les premiers pas sur Docker**
+## **Déployer son premier conteneur**
+## Première tentative
+### Contexte
+Maintenant qu'on a les outlis nécessaire, on va prendre en main **Docker** en **déployant** un premier **conteneur**.
+
+### Objectifs
+Déployer un serveur web (NGINX) sur le Docker Engine Local. Les manipulations suivantes seront entraînées:
+* Lister les conteneurs et voir leur statut.
+* Récupérer une image existante sur Docker Hu et construire un premier conteneur.
+* Déployer le conteneur et tenter d'accéder à la page par défaut du serveur web.
+
+## **2. Réalisation**
+### Prérequis
+* WLS2 est installé et opérationnel
+Pour vérifier s'il l'est, ouvrir le terminal et taper la commande `wsl --status`
+Ou `wsl -l -v` pour lister les distributions installées et leur version.
+Ce n'est pas mon cas.
+
+_WSL pour Windows Subsystem for Linux est un outil qui permet de faire tourner un environnemetn Linux
+directement à l'intérieur de Windows. ça permet d'utiliser de vraies commandes Linux (bash,
+ls, grep, etc) directement depuis mon invite de commande ou le terminal VSCode.
+Il est essentiel pour faire marcher Docker qui a besoin d'un noyau Linux pour faire tourner
+des conteneurs de manière fluide sur windows._
+
+### Marche à suivre du prérequis
+* Ouvrir PowerShll en tant qu'admin et executer la ligne de commande:
+-- INPUT
+`wsl --install`
+-- OUTPUT
+```
+Téléchargement en cours : Sous-système Windows pour Linux 2.7.12
+Installation en cours : Sous-système Windows pour Linux 2.7.12
+Sous-système Windows pour Linux 2.7.12 a été installé.
+Installation du composant facultatif Windows : VirtualMachinePlatform
+
+Outil Gestion et maintenance des images de déploiement
+Version : 10.0.26100.8972
+
+Version de l’image : 10.0.26200.9168
+
+Activation de la ou des fonctionnalités
+[==========================100.0%==========================]
+L’opération a réussi.
+L’opération demandée est réussie. Les modifications ne seront pas effectives avant que le système ne soit réamorcé.
+L’opération demandée est réussie. Les modifications ne seront pas effectives avant que le système ne soit réamorcé.
+```
+
+-- INPUT
+`wsl --install ubuntu`
+
+-- OUTPUT
+`L’opération demandée est réussie. Les modifications ne seront pas effectives avant que le système ne soit réamorcé.`
+
+* En cas d'erreur comme celle montrée par le prof dans le fichier source,
+faire ça:
+
+![](images/erreurProf.png "Erreur")
+
+* Redémarrer l'ordinateur pour qu'il prenne en compte les modifications.
+
+## **2. Installer Docker Engine**
+* [Télécharger](https://docs.docker.com/engine/install/) 
+* Télécharger la version pour Windows "[Docker Desktop fro Windows -x84 64](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-win-amd64&_gl=1*1or7s3h*_gcl_au*MTA2MzkwNTI5Ni4xNzg3NDM3NDI1*_ga*MTE4NDE1MzE3Mi4xNzg3NDM3NDI1*_ga_XJWPQMJYHQ*czE3ODc0Mzc0MjUkbzEkZzEkdDE3ODc0MzgxMDQkajU4JGwwJGgw)"
+* Lancer le fichier .exe, faire **ok** et attendre la fin de l'installation puis **cliquer** sur le bouton
+"**quitter**".
+* Lancer l'application **Docker Desktop** en la cherchant dans la barre de recherche windows.
+* **Accepter** le contrat de license.
+* Se **connecter**. Je l'ai fait avec Google. Mon username est noorkiaou.
+* Vérifier son adresse email et ouvrir l'application.
+* Docker Desktop est installé.
+* Lancer ensuite **VSCode**
+* C'est le symbole qui ressemble à ça **><** qui permets de se connecter à **WSL**.
+En cliquant dessus on peut sélectionner **WSL** en haut de l'écran VSCode.
+Preuve ici-bas:
+
+![](images/WSL.png "WSL")
+
+~~**Problème**: Quand j'essaie d'ouvrir **wsl** sur **VSCode**, j'ai un message d'erreur qui s'affiche.
+
+![](images/WSL.png "message d'erreur")
+
+* Cliquer sur **close WSL Window**
+* Ouvrir mon terminal classique (c'est un windows **powershell**)
+* Taper:
+-- INPUT
+`wsl`
+-- OUTPUT
+`A8:/mnt/host/c/Users/noork#`
+ça nous connecte directement à l'**environnement Linux** via WSL.
+* Fermer le terminal.
+* Ouvrir VSCode manuellement.
+* Cliquer sur >**<** pour Wsl
+* Cette fois il y a deux options qui s'affichent en haut de l'écran de VScode:
+-- OUTPUT
+`Connect to WSL` qui n'a pas marché avant.
+`Connect to WSL using Distro...`
+* **Cliquer** sur le second (`Connect to WSL using Distro...`)
+-- OUTPUT
+`docker-desktop default distro`
+`+Install New...`
+
+**Explication du problème**:
+Comme **docker-desktop** apparaît dans la liste, aucune autre distribution **Linux** n'est installée sur mon **WSL**.
+**Docker Desktop** a besoin de WSL mais il en utilise actuellement une version interne et cachée appelée **docker-desktop**
+uniquement pour faire tourner son moteur de conteneurs en arrière lant.
+C'est pourquoi **VSCode** ne peut pas se connecter à **docker-desktop**, c'est pas fait pour coder,
+il est juste un **moteur technique** pour **Docker**.
+**Maintenant on abesoin d'une distribution Linux qui permette de coder.**~~
+
+
+
+## **3. Accès au web**
+### Objectif
+* Récupérer l'image officielle [NGINX](https://hub.docker.com/_/nginx) pour Docker Source.
+
+### Marche à suivre
+* Pull l'image **NGINX** en tapant ce code sur le terminal **Powershell**:
+-- INPUT
+`docker pull nginx` dans mon **terminal** (**Pwershell** ou VSCode)
+-- OUPTUT
+```
+Using default tag: latest
+latest: Pulling from library/nginx
+7eb55399d6de: Pull complete
+5d480233f531: Pull complete
+128fcc7b23b0: Pull complete
+5508f6432d3e: Pull complete
+26c307b5e35a: Pull complete
+746b934a8960: Pull complete
+f530c3e421fc: Pull complete
+81dd0279e705: Download complete
+3976f7b8a9d7: Download complete
+Digest: sha256:8f029c543423e3eac6b08254718bc31eb75633b1e448026b6616927baa7d4bfe
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+```
+
+**Quelle est la version de l'image NGINX qui a été récupérée?**
+* lister les images en tapant
+-- INPUT
+`docker images`
+-- OUPUT
+```
+IMAGE          ID             DISK USAGE   CONTENT SIZE   EXTRA
+nginx:latest   8f029c543423        241MB         66.2MB
+```
+On retrouve:
+- le poids de l'image: 66.2MB
+- La dernière Iso de NGINX
+
+## **4.Déployer le conteneur NGINX - première tentative**
+### Contexte
+* On va demander à Docker de créer un conteneur avec l'image NGINX et de le lancer au premier plan
+via la commande `docker run --name nginx-first-attempt nginx`.
+* Le conteneur va s'exécuter directement dans le terminal et afficher tous ses messages de 
+journalisation  (ses logs) en temps réel.
+
+### Marche à suivre
+* Lancer le terminal et taper:
+-- INPUT
+```
+docker run --name nginx-first-attempt nginx
+```
+-- OUTPUT
+```
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2026/08/22 23:36:35 [notice] 1#1: using the "epoll" event method
+2026/08/22 23:36:35 [notice] 1#1: nginx/1.31.4
+2026/08/22 23:36:35 [notice] 1#1: built by gcc 14.2.0 (Debian 14.2.0-19)
+2026/08/22 23:36:35 [notice] 1#1: OS: Linux 6.18.33.2-microsoft-standard-WSL2
+2026/08/22 23:36:35 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2026/08/22 23:36:35 [notice] 1#1: start worker processes
+2026/08/22 23:36:35 [notice] 1#1: start worker process 29
+2026/08/22 23:36:35 [notice] 1#1: start worker process 30
+2026/08/22 23:36:35 [notice] 1#1: start worker process 31
+2026/08/22 23:36:35 [notice] 1#1: start worker process 32
+2026/08/22 23:36:35 [notice] 1#1: start worker process 33
+2026/08/22 23:36:35 [notice] 1#1: start worker process 34
+2026/08/22 23:36:35 [notice] 1#1: start worker process 35
+2026/08/22 23:36:35 [notice] 1#1: start worker process 36
+2026/08/22 23:36:35 [notice] 1#1: start worker process 37
+2026/08/22 23:36:35 [notice] 1#1: start worker process 38
+2026/08/22 23:36:35 [notice] 1#1: start worker process 39
+2026/08/22 23:36:35 [notice] 1#1: start worker process 40
+2026/08/22 23:36:35 [notice] 1#1: start worker process 41
+2026/08/22 23:36:35 [notice] 1#1: start worker process 42
+2026/08/22 23:36:35 [notice] 1#1: start worker process 43
+2026/08/22 23:36:35 [notice] 1#1: start worker process 44
+```
+La commande semble bloquée mais enfait le terminal est branché sur la sortie du conteneur.
+Si on ferme le terminal, le conteneur s'arrêtera.
+
+## **4.Déployer le conteneur NGINX - deuxième tentative**
+### Contexte
+* On va ouvrir un second onglet dans le terminal et taper `docker ps -a` pour interroger le
+gestionnaire de Docker et lui demander de montrer tous les conteneurs qui exstent sur la machine
+(qu'ils soient allumés ou éteins.)
+
+### Marche à suivre
+* Ouvrir un second onglet de terminal et lister les conteneurs répertorié:
+  -- INPUT
+```
+docker ps -a
+```
+-- OUTPUT
+```
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES
+cc0275322c63   nginx     "/docker-entrypoint.…"   3 minutes ago   Up 3 minutes   80/tcp    nginx-first-attempt
+```
+ça montre le conteneur **cc0275322c63** qu'on vient de créer 
+et que le premier onglet du terminal maintient en vie en "up", donc allumé.
+* Tenter de **contacter** le **serveur web** (qui écoute normalement sur le **port 80**, en **tcp**):
+-- INPUT
+```
+curl localhost
+```
+-- OUTPUT
+```
+curl : Impossible de se connecter au serveur distant
+Au caractère Ligne:1 : 1
++ curl localhost
++ ~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation : (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebRequest], WebExcep
+   tion
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+```
+**Probème numéro un:**
+**curl** dans **PowerShell** est un raccourcis vers une autre commande interne (Invoke-WebRequest).
+Je devais utliliser la commande `curl.exe localhost`
+Ou j'aurais pu faire avec Cmder dès le début avec la commande `curl localhost` car il n'y aurait pas eu ce problème.
+
+* deuxième essaie:
+-- INPUT
+```
+curl.exe localhost
+```
+-- OUTPUT
+```
+curl: (7) Failed to connect to localhost:80 after 2260 ms: Could not connect to server
+PS C:\Users\noork>
+```
+
+**Conclusion**:
+**Problème numéro deux:**
+_**Le port 80 du conteneur n'a pas de PATH qui mène à ma machine hôte pour l'instant. Mais il faut noter que le port 80 écoute effectiment.**_
+
+
+## Stopper et supprimer le conteneur:
+* Lister les conteneurs et récupérer le nom ou l'id du conteneur.
+-- INPUT
+```
+docker ps -a
+```
+-- OUTPUT
+```
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES
+cc0275322c63   nginx     "/docker-entrypoint.…"   3 minutes ago   Up 3 minutes   80/tcp    nginx-first-attempt
+```
+
+* On stop le **conteneur nginx-first-attempt** avec 
+-- INPUT
+* `docker stop nginx-first-attempt`
+--OUTPUT
+`nginx-first-attempt`
+
+* On vérifie son état avec:
+--INPUT
+`docker ps -a`
+--OUTPUT
+```
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                          PORTS     NAMES
+  982224d77152   nginx     "/docker-entrypoint.…"   13 minutes ago   Exited (0) About a minute ago             nginx-first-attempt
+```
+On voit quil est Exited.
+
+* On le supprime avec 
+-- INPUT
+`docker rm nginx-first-attempt`
+--OUTPUT
+```
+nginx-first-attempt
+```
+
+* On revérifie son état:
+--INPUT
+`docker ps -a`
+--OUTPUT
+`CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES`
+
+* Valider que l'image est toujours présente:
+--INPUT
+`docker images`
+--OUTPUT
+```
+IMAGE          ID             DISK USAGE   CONTENT SIZE   EXTRA
+nginx:latest   8f029c543423        241MB         66.2MB
+```
+Fin.
