@@ -226,7 +226,7 @@ Rechercher **Docker** et cliquer sur **installer**
 ### Marche à suivre
 * Ouvrir Visual Studo Code
 * Appuyer sur "CTRL + SHIFT + p"
-* Puis écrire "**open user settings**" et choisir le "**user settings **"
+* Puis écrire "**open user settings**" et choisir le "**user settings JSON **"
   (c'est normal que > soit mis automatiquement avant notre text)
 
 ![](images/usersettingsjson.png "user settings json")
