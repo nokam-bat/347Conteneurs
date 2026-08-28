@@ -189,7 +189,7 @@ drwxr-xr-x 1 noork 197609 0 août  21 22:42 ./
 drwxr-xr-x 1 noork 197609 0 août  21 22:37 ../
 drwxr-xr-x 1 noork 197609 0 août  21 22:42 .git/
 ```
-
+**PROBLEME** Je suis entrain de le refaire sur mon ordi d'école et -la ne marche pas.
 
 ## **Visual Studio Code "VSC"  -  Visual Studio Code – Éditeur de code**
 ## **1.Visual Studio Code - Éditeur de code "VSC"**
